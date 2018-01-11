@@ -13,8 +13,8 @@ public class Phone {
      * ABD_PATH此处应更改为自己的adb目录
      * HERO_PATH更改自己存放图片的地址
      */
-    private static final String ADB_PATH = "D:\\software\\Android\\android-sdk\\platform-tools\\adb";
-    private static final String HERO_PATH = "D:\\Photo";
+    private static final String ADB_PATH = "D:\\tools\\platform(adb&fastboot)-tools-latest-windows\\platform-tools\\adb";
+    private static final String HERO_PATH = "D:\\__screenshot";
     private static final Long MIN_IMAGE_SIZE=1000L;
 
     File getImage() {
