@@ -1,10 +1,7 @@
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.URL;
 import java.net.URLEncoder;
 import java.util.concurrent.Callable;
 
@@ -21,10 +18,9 @@ public class SearchAndOpen implements Callable {
     }
 
     private Long searchAndOpen(String question) throws IOException {
-        String path = null;
+        String path;
         try {
-            path = "http://www.baidu.com/s?tn=ichuner&lm=-1&word=" +
-                    URLEncoder.encode(question, "gb2312") + "&rn=20";
+            path = "http://www.baidu.com/s?tn=ichuner&lm=-1&word=" + URLEncoder.encode(question, "gb2312") + "&rn=20";
             //获取操作系统的名字
             String osName = System.getProperty("os.name", "");
             if (osName.startsWith("Mac OS")) {

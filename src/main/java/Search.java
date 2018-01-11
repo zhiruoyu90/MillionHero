@@ -16,8 +16,7 @@ public class Search implements Callable {
         this.question = question;
     }
     Long search(String question) throws IOException {
-        String path = "http://www.baidu.com/s?tn=ichuner&lm=-1&word=" +
-                URLEncoder.encode(question, "gb2312") + "&rn=1";
+        String path = "http://www.baidu.com/s?tn=ichuner&lm=-1&word=" + URLEncoder.encode(question, "gb2312") + "&rn=1";
         boolean findIt = false;
         String line = null;
         while (!findIt) {
