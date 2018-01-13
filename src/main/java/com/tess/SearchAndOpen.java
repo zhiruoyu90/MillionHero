@@ -1,9 +1,11 @@
 package com.tess;
 
+import java.awt.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.URI;
 import java.net.URLEncoder;
 import java.util.concurrent.Callable;
 
@@ -14,7 +16,7 @@ import java.util.concurrent.Callable;
  */
 public class SearchAndOpen implements Callable {
     private final String question;
-    
+
     public SearchAndOpen(String question) {
         this.question = question;
     }
@@ -25,14 +27,15 @@ public class SearchAndOpen implements Callable {
             path = "http://www.baidu.com/s?tn=ichuner&lm=-1&word=" + URLEncoder.encode(question, "gb2312") + "&rn=20";
             //获取操作系统的名字
             String osName = System.getProperty("os.name", "");
-            if (osName.startsWith("Mac OS")) {
-                //苹果的打开方式
+            if (osName.startsWith("Mac OS")) {  //苹果的打开方式
                 Class fileMgr = Class.forName("com.apple.eio.FileManager");
                 Method openURL = fileMgr.getDeclaredMethod("openURL", new Class[]{String.class});
                 openURL.invoke(null, new Object[]{path});
-            } else if (osName.startsWith("Windows")) {
-                //windows的打开方式。
+            } else if (osName.startsWith("Windows")) {  //Windows的打开方式
                 Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + path);
+            } else if (osName.startsWith("Linux")) {    //Linux的打开方式
+                Desktop desktop = Desktop.getDesktop();
+                desktop.browse(URI.create(path));
             }
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();

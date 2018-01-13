@@ -10,6 +10,7 @@ public class Information {
     
     public Information(String str) {
         str = str.replaceAll("((\r\n)|\n)[\\s\t ]*(\\1)+", "$1").replaceAll("^((\r\n)|\n)", "");    // 替换空行
+        str = str.replace(Constant.QUESTION_FLAG_ZH, Constant.QUESTION_FLAG);
         str=str.replaceAll(" ","");    // 替换空格
         str=str.replaceAll("(\\d+\\.)", "$1").replaceAll("(\\d+\\.)", ""); // 替换题号
         question = str.trim().substring(0,str.indexOf(Constant.QUESTION_FLAG) + 1);
